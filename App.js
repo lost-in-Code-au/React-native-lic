@@ -1,39 +1,121 @@
 import React from 'react'
-import {
-  StyleSheet,
-  AppRegistry,
-  View,
-  Text,
-  StatusBar
-} from 'react-native'
+import { StyleSheet, Text, View, AppRegistry, Button } from 'react-native'
+import { StackNavigator } from 'react-navigation'
 
-const styles = StyleSheet.create({
-  defaultText: {
-    fontSize: 22
-  },
-  viewBackground: {
-    backgroundColor: '#444'
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Welcome'
   }
-})
-
-class App extends React.Component {
-
   render() {
+    const { navigate } = this.props.navigation
     return (
-      <View style={styles.viewBackground}>
-      <StatusBar hidden={false} />
-        <Text style={styles.defaultText}>
-          Hello james
-        </Text>
-        <Text style={styles.defaultText}>
-          Hello billy
-        </Text>
+      <View>
+        <Text>Hello, Chat App!</Text>
+        <Button
+          onPress={() => navigate('Chat')}
+          title="Chat with Lucy"
+        />
       </View>
     )
   }
 }
 
-export default App
+class ChatScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Chat with Lucy',
+  }
+  render() {
+    return (
+      <View>
+        <Text>Chat with Lucy</Text>
+      </View>
+    )
+  }
+}
+
+const SimpleApp = StackNavigator({
+  Home: { screen: HomeScreen },
+  Chat: { screen: ChatScreen },
+})
+
+export default class App extends React.Component {
+  render() {
+    return <SimpleApp />;
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+})
+
+
+// //////// HELLO WORLD APP //////////
+// import React from 'react'
+// import {
+//   StyleSheet,
+//   AppRegistry,
+//   View,
+//   Text,
+//   StatusBar
+// } from 'react-native'
+//
+// import {
+//   StackNavigator,
+// } from 'react-navigation';
+//
+// const App = StackNavigator({
+//   Home: { screen: HomeScreen },
+//   Profile: { screen: ProfileScreen },
+// })
+//
+//
+// class HomeScreen extends React.Component {
+//   static navigationOptions = {
+//     title: 'Welcome',
+//   }
+//   render() {
+//     const { navigate } = this.props.navigation
+//     return (
+//       <Button
+//         title="Go to Jane's profile"
+//         onPress={() => navigate('Profile', { name: 'Jane' })
+//         }
+//       />
+//     )
+//   }
+// }
+// export default HomeScreen
+//
+// // class App extends React.Component {
+//
+//   render() {
+//     return (
+//       <View style={styles.viewBackground}>
+//       <StatusBar hidden={false} />
+//         <Text style={styles.defaultText}>
+//           Hello james
+//         </Text>
+//         <Text style={styles.defaultText}>
+//           Hello billy
+//         </Text>
+//       </View>
+//     )
+//   }
+// }
+
+// const styles = StyleSheet.create({
+//   defaultText: {
+//     fontSize: 22
+//   },
+//   viewBackground: {
+//     backgroundColor: '#444'
+//   }
+// })
 
 // /**
 //  * Sample React Native App
